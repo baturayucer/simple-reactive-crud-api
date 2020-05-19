@@ -8,4 +8,5 @@ public class ItemConstants {
     public static final String V1_ITEMS_ALL = "/items/all";
     public static final String V1_FIND_ONE = "/items/findOne";
     public static final String V1_FIND_BY_DESC = "/items/findByDesc";
+    public static final String V1_CREATE_ITEM = "/createItem";
 }

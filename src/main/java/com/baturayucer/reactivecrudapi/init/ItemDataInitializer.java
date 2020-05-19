@@ -4,6 +4,7 @@ import com.baturayucer.reactivecrudapi.entity.Item;
 import com.baturayucer.reactivecrudapi.repository.ItemReactiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
@@ -11,7 +12,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * @author baturayucer.
+ */
+//do not run ItemDataInitializer if the active profile is test
 @Component
+@Profile("!test")
 public class ItemDataInitializer implements CommandLineRunner {
 
     private ItemReactiveRepository itemReactiveRepository;

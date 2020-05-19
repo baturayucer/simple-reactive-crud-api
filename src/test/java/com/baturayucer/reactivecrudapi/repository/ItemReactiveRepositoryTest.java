@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
+//there is no need to set active profile here because we have @DataMongoTest
 @DataMongoTest
 @RunWith(SpringRunner.class)
 public class ItemReactiveRepositoryTest {
