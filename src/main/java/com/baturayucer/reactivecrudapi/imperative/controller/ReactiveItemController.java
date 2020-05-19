@@ -1,40 +1,30 @@
 package com.baturayucer.reactivecrudapi.imperative.controller;
 
 import com.baturayucer.reactivecrudapi.dto.ItemDto;
-import com.baturayucer.reactivecrudapi.service.ItemService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import static com.baturayucer.reactivecrudapi.constant.ItemConstants.*;
+import static com.baturayucer.reactivecrudapi.constant.ItemConstants.ID;
 
-@RestController
+/**
+ * @author baturayucer.
+ */
 @RequestMapping(value = IMPERATIVE_CONTROLLER_V1)
-public class ReactiveItemController {
-
-    ItemService itemService;
-
-    @Autowired
-    ReactiveItemController(ItemService itemService) {
-        this.itemService = itemService;
-    }
+public interface ReactiveItemController {
 
     @GetMapping(value = V1_ITEMS_ALL)
-    public Flux<ItemDto> getAllItems() {
-        return itemService.getAllItems();
-    }
+    Flux<ItemDto> getAllItems();
 
     @GetMapping(value = V1_FIND_ONE)
-    public Mono<ItemDto> findOne(@RequestParam(value = ID) String id) {
-        return itemService.finOne(id);
-    }
+    Mono<ItemDto> findOne(@RequestParam(value = ID) String id);
 
     @GetMapping(value = V1_FIND_BY_DESC)
-    public Flux<ItemDto> findByDescription(@RequestParam(value = DESCRIPTION) String description) {
-        return itemService.findByDescription(description);
-    }
+    Flux<ItemDto> findByDescription(@RequestParam(value = DESCRIPTION) String description);
+
+    @PostMapping(value = V1_CREATE_ITEM)
+    @ResponseStatus(HttpStatus.CREATED)
+    Mono<ItemDto> createItem(@RequestBody ItemDto itemRequest);
 }

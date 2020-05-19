@@ -12,6 +12,10 @@ import static com.baturayucer.reactivecrudapi.constant.ItemConstants.*;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
+
+/**
+ * @author baturayucer.
+ */
 @Configuration
 public class SimpleRouterConfig {
     @Bean

@@ -11,4 +11,5 @@ public interface ItemMapper {
     ItemMapper INSTANCE = Mappers.getMapper( ItemMapper.class );
 
     ItemDto toItemDto(Item item);
+    Item toItemEntity(ItemDto item);
 }
