@@ -17,11 +17,11 @@ public class SimpleRouterConfig {
     @Bean
     public RouterFunction<ServerResponse> route(SimpleHandler handlerFunction) {
         return RouterFunctions
-                .route(GET(FUNCTIONAL_ROUTER + V1_ITEMS_ALL)
+                .route(GET(FUNCTIONAL_ROUTER_V1 + V1_ITEMS_ALL)
                         .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::getAllItems)
-                .andRoute(GET(FUNCTIONAL_ROUTER + V1_FIND_ONE)
+                .andRoute(GET(FUNCTIONAL_ROUTER_V1 + V1_FIND_ONE)
                         .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::findOne)
-                .andRoute(GET(FUNCTIONAL_ROUTER + V1_FIND_BY_DESC)
+                .andRoute(GET(FUNCTIONAL_ROUTER_V1 + V1_FIND_BY_DESC)
                         .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::findByDescription);
     }
 }
