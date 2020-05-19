@@ -92,12 +92,19 @@ public class ItemReactiveRepositoryTest {
 
     @Test
     public void deleteTest() {
+
+        Flux<Void> apple_tv = repository.findByDescription("Apple TV")
+                .flatMap(item -> repository.delete(item));
+
         Mono<Void> beats1 = repository.findById("BEATS1")
                 .map(Item::getId)
                 .flatMap(id -> {
                     return repository.deleteById(id);
                 });
         StepVerifier.create(beats1)
+                .expectSubscription()
+                .verifyComplete();
+        StepVerifier.create(apple_tv)
                 .expectSubscription()
                 .verifyComplete();
     }
