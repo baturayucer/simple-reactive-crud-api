@@ -22,22 +22,22 @@ import static com.baturayucer.reactivecrudapi.constant.ItemConstants.ID;
 @Component
 public class SimpleHandler {
 
-    private ItemService itemServiceImpl;
+    private ItemService itemService;
 
     @Autowired
-    SimpleHandler(ItemService itemServiceImpl) {
-        this.itemServiceImpl = itemServiceImpl;
+    SimpleHandler(ItemService itemService) {
+        this.itemService = itemService;
     }
 
     public Mono<ServerResponse> getAllItems(ServerRequest serverRequest) {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(itemServiceImpl.getAllItems(), ItemDto.class);
+                .body(itemService.getAllItems(), ItemDto.class);
     }
 
     public Mono<ServerResponse> findOne(ServerRequest serverRequest) {
             Mono<ItemDto> item = serverRequest.queryParam(ID)
-                    .map(id -> itemServiceImpl.finOne(id))
+                    .map(id -> itemService.finOne(id))
                     .orElseThrow(RuntimeException::new);
             return ServerResponse.ok()
                     .contentType(MediaType.APPLICATION_JSON)
@@ -46,7 +46,7 @@ public class SimpleHandler {
 
     public Mono<ServerResponse> findByDescription(ServerRequest serverRequest) {
         Flux<ItemDto> items = serverRequest.queryParam(DESCRIPTION)
-                .map(desc -> itemServiceImpl.findByDescription(desc))
+                .map(desc -> itemService.findByDescription(desc))
                 .orElseThrow(RuntimeException::new);
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -54,8 +54,10 @@ public class SimpleHandler {
     }
 
     public Mono<ServerResponse> createItem(ServerRequest serverRequest) {
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(Optional.of(serverRequest.bodyToMono(ItemDto.class)
-                        .map(itemDto -> itemServiceImpl.createItem(itemDto))), ItemDto.class);
+        Mono<ItemDto> itemDtoMono = serverRequest.bodyToMono(ItemDto.class)
+                .flatMap(item -> itemService.createItem(item));
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(itemDtoMono, ItemDto.class);
     }
 }

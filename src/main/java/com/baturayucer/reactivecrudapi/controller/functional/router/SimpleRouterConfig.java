@@ -9,8 +9,7 @@ import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static com.baturayucer.reactivecrudapi.constant.ItemConstants.*;
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
+import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 
 
 /**
@@ -27,7 +26,7 @@ public class SimpleRouterConfig {
                         .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::findOne)
                 .andRoute(GET(FUNCTIONAL_ROUTER_V1 + FIND_BY_DESC)
                         .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::findByDescription)
-                .andRoute(GET(FUNCTIONAL_ROUTER_V1 + CREATE_ITEM)
+                .andRoute(POST(FUNCTIONAL_ROUTER_V1 + CREATE_ITEM)
                         .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::createItem);
 
     }
