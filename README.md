@@ -1,7 +1,7 @@
 # Simple Reactive Crud Api
 Reactive Crud Api With Spring Webflux and Reactive MongoDB
 
-##Installation
+## Installation
 
 * brew tap mongodb/brew
 
@@ -15,15 +15,16 @@ Reactive Crud Api With Spring Webflux and Reactive MongoDB
 
 - java -jar target/simple-reactive-crud-api-0.0.1-SNAPSHOT.jar
 
-##Design
+## Design
 
 ![Architecture](src/main/resources/Architecture.png)
 
-##Api Documentation
-###LegacyController:
+## Api Documentation
+
+### LegacyController:
 https://app.swaggerhub.com/apis/baturayucer/reactive-item-api/0.1
 
 ![legacyController](src/main/resources/legacyController.png)
 
-###FunctionalRouter:
+### FunctionalRouter:
 TBD...
