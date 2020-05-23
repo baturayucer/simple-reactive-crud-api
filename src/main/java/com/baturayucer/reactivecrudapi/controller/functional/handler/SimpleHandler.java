@@ -36,12 +36,12 @@ public class SimpleHandler {
     }
 
     public Mono<ServerResponse> findOne(ServerRequest serverRequest) {
-            Mono<ItemDto> item = serverRequest.queryParam(ID)
-                    .map(id -> itemService.finOne(id))
-                    .orElseThrow(RuntimeException::new);
-            return ServerResponse.ok()
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(item, ItemDto.class);
+        Mono<ItemDto> item = serverRequest.queryParam(ID)
+                .map(id -> itemService.finOne(id))
+                .orElseThrow(RuntimeException::new);
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(item, ItemDto.class);
     }
 
     public Mono<ServerResponse> findByDescription(ServerRequest serverRequest) {
