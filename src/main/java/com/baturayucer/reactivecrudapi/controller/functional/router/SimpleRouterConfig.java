@@ -20,14 +20,14 @@ public class SimpleRouterConfig {
     @Bean
     public RouterFunction<ServerResponse> route(SimpleHandler handlerFunction) {
         return RouterFunctions
-                .route(GET(FUNCTIONAL_ROUTER_V1 + ITEMS_ALL)
-                        .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::getAllItems)
-                .andRoute(GET(FUNCTIONAL_ROUTER_V1 + FIND_ONE)
-                        .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::findOne)
-                .andRoute(GET(FUNCTIONAL_ROUTER_V1 + FIND_BY_DESC)
-                        .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::findByDescription)
-                .andRoute(POST(FUNCTIONAL_ROUTER_V1 + CREATE_ITEM)
-                        .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::createItem);
+            .route(GET(FUNCTIONAL_ROUTER_V1 + ITEMS_ALL)
+                    .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::getAllItems)
+            .andRoute(GET(FUNCTIONAL_ROUTER_V1 + FIND_ONE)
+                    .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::findOne)
+            .andRoute(GET(FUNCTIONAL_ROUTER_V1 + FIND_BY_DESC)
+                    .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::findByDescription)
+            .andRoute(POST(FUNCTIONAL_ROUTER_V1 + CREATE_ITEM)
+                    .and(accept(MediaType.APPLICATION_JSON)), handlerFunction::createItem);
 
     }
 }
