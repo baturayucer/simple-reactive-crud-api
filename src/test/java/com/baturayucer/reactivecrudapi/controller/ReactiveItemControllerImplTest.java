@@ -1,6 +1,5 @@
 package com.baturayucer.reactivecrudapi.controller;
 
-import com.baturayucer.reactivecrudapi.constant.ItemConstants;
 import com.baturayucer.reactivecrudapi.dto.ItemDto;
 import com.baturayucer.reactivecrudapi.entity.Item;
 import com.baturayucer.reactivecrudapi.repository.ItemReactiveRepository;
@@ -51,14 +50,14 @@ public class ReactiveItemControllerImplTest {
 
     @Test
     public void getAllItemsTest() {
-        webTestClient.get().uri(IMPERATIVE_CONTROLLER_V1 + V1_ITEMS_ALL)
+        webTestClient.get().uri(LEGACY_CONTROLLER_V1 + ITEMS_ALL)
                 .exchange()
                 .expectStatus().isOk()
                 .expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)
                 .expectBodyList(Item.class)
                 .hasSize(3);
 
-        webTestClient.get().uri(IMPERATIVE_CONTROLLER_V1 + V1_ITEMS_ALL)
+        webTestClient.get().uri(LEGACY_CONTROLLER_V1 + ITEMS_ALL)
                 .exchange()
                 .expectStatus().isOk()
                 .expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -74,7 +73,7 @@ public class ReactiveItemControllerImplTest {
     public void createItemTest() {
 
         Item item = new Item(null, "Iphone 11", 799.99);
-        webTestClient.post().uri(IMPERATIVE_CONTROLLER_V1 + V1_CREATE_ITEM)
+        webTestClient.post().uri(LEGACY_CONTROLLER_V1 + CREATE_ITEM)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(item), ItemDto.class)
                 .exchange()

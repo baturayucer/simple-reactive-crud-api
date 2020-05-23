@@ -1,7 +1,6 @@
-package com.baturayucer.reactivecrudapi.functional.handler;
+package com.baturayucer.reactivecrudapi.controller.functional.handler;
 
 import com.baturayucer.reactivecrudapi.dto.ItemDto;
-import com.baturayucer.reactivecrudapi.entity.Item;
 import com.baturayucer.reactivecrudapi.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
