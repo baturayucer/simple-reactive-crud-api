@@ -1,8 +1,9 @@
-package com.baturayucer.reactivecrudapi.imperative.controller;
+package com.baturayucer.reactivecrudapi.controller.legacy;
 
 import com.baturayucer.reactivecrudapi.dto.ItemDto;
 import com.baturayucer.reactivecrudapi.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,19 +27,19 @@ public class ReactiveItemControllerImpl implements ReactiveItemController {
         this.itemService = itemService;
     }
 
-    public Flux<ItemDto> getAllItems() {
-        return itemService.getAllItems();
+    public ResponseEntity<Flux<ItemDto>> getAllItems() {
+        return ResponseEntity.ok(itemService.getAllItems());
     }
 
-    public Mono<ItemDto> findOne(@RequestParam(value = ID) String id) {
-        return itemService.finOne(id);
+    public ResponseEntity<Mono<ItemDto>> findOne(@RequestParam(value = ID) String id) {
+        return ResponseEntity.ok(itemService.finOne(id));
     }
 
-    public Flux<ItemDto> findByDescription(@RequestParam(value = DESCRIPTION) String description) {
-        return itemService.findByDescription(description);
+    public ResponseEntity<Flux<ItemDto>> findByDescription(@RequestParam(value = DESCRIPTION) String description) {
+        return ResponseEntity.ok(itemService.findByDescription(description));
     }
 
-    public Mono<ItemDto> createItem(@RequestBody ItemDto itemRequest) {
-        return itemService.createItem(itemRequest);
+    public ResponseEntity<Mono<ItemDto>> createItem(@RequestBody ItemDto itemRequest) {
+        return ResponseEntity.ok(itemService.createItem(itemRequest));
     }
 }
