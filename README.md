@@ -22,9 +22,13 @@ Reactive Crud Api With Spring Webflux and Reactive MongoDB
 ## Api Documentation
 
 ### LegacyController:
+
 https://app.swaggerhub.com/apis/baturayucer/reactive-item-api/0.1
 
 ![legacyController](src/main/resources/legacyController.png)
 
 ### FunctionalRouter:
-TBD...
+
+https://app.swaggerhub.com/apis/baturayucer/reactive-item-api-functional-router/0.1
+
+![functionalRouter](src/main/resources/FunctionalRouter.png)
