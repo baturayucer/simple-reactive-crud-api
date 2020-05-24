@@ -1,7 +1,6 @@
 package com.baturayucer.reactivecrudapi.controller.functional.handler;
 
 import com.baturayucer.reactivecrudapi.dto.ItemDto;
-import com.baturayucer.reactivecrudapi.entity.Item;
 import com.baturayucer.reactivecrudapi.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -10,8 +9,6 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Optional;
 
 import static com.baturayucer.reactivecrudapi.constant.ItemConstants.DESCRIPTION;
 import static com.baturayucer.reactivecrudapi.constant.ItemConstants.ID;

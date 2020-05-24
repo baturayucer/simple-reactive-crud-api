@@ -36,16 +36,16 @@ public class ItemDataInitializer implements CommandLineRunner {
 
     public List<Item> generateItems() {
         return Arrays.asList(new Item(null, "Apple TV", 400.0),
-                new Item(null, "Samsung Watch", 99.0),
-                new Item("BEATS1", "Beats HeadPhones", 110.0));
+            new Item(null, "Samsung Watch", 99.0),
+            new Item("BEATS1", "Beats HeadPhones", 110.0));
     }
 
     private void dataSetup() {
         itemReactiveRepository.deleteAll()
-                .thenMany(Flux.fromIterable(generateItems()))
-                .flatMap(itemReactiveRepository::save)
-                .thenMany(itemReactiveRepository.findAll())
-                .subscribe(item -> logger.info("Item inserted: " + item.getDescription()));
+            .thenMany(Flux.fromIterable(generateItems()))
+            .flatMap(itemReactiveRepository::save)
+            .thenMany(itemReactiveRepository.findAll())
+            .subscribe(item -> logger.info("Item inserted: " + item.getDescription()));
 
     }
 }
