@@ -1,4 +1,4 @@
-package com.baturayucer.reactivecrudapi.controller;
+package com.baturayucer.reactivecrudapi.controller.legacy;
 
 import com.baturayucer.reactivecrudapi.dto.ItemDto;
 import com.baturayucer.reactivecrudapi.entity.Item;
@@ -77,7 +77,7 @@ public class ReactiveItemControllerImplTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(item), ItemDto.class)
                 .exchange()
-                .expectStatus().isCreated()
+                .expectStatus().isOk()
                 .expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)
                 .expectBody(ItemDto.class)
                 .consumeWith(response -> {

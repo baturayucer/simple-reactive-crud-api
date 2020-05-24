@@ -13,5 +13,4 @@ public class ReactiveCrudApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ReactiveCrudApiApplication.class, args);
 	}
-
 }
