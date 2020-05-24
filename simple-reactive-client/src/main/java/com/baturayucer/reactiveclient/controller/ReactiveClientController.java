@@ -10,15 +10,18 @@ import reactor.core.publisher.Flux;
 
 import static com.baturayucer.reactiveclient.constant.ReactiveClientConstants.*;
 
+/**
+ * @author baturayucer.
+ */
 @RestController
 public class ReactiveClientController {
 
     WebClient webClient = WebClient.create(API_URL);
 
-    @GetMapping(value = LEGACY_CONTROLLER_V1 + ITEMS_ALL)
+    @GetMapping(value = REACTIVE_CLIENT_V1 + ITEMS_ALL)
     public ResponseEntity<Flux<ItemDto>> getAllItems() {
         Flux<ItemDto> itemDtoFlux = webClient.get()
-                .uri(LEGACY_CONTROLLER_V1 + ITEMS_ALL)
+                .uri(REACTIVE_CLIENT_V1 + ITEMS_ALL)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToFlux(ItemDto.class).log();
