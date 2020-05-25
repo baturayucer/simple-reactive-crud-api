@@ -1,27 +1,28 @@
 package com.baturayucer.reactiveclient.controller;
 
 import com.baturayucer.reactiveclient.dto.ItemDto;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import static com.baturayucer.reactiveclient.constant.ReactiveClientConstants.*;
 
-@RestController
-public class ReactiveClientController {
 
-    WebClient webClient = WebClient.create(API_URL);
+@RequestMapping(value = REACTIVE_CLIENT_V1)
+public interface ReactiveClientController {
 
-    @GetMapping(value = LEGACY_CONTROLLER_V1 + ITEMS_ALL)
-    public ResponseEntity<Flux<ItemDto>> getAllItems() {
-        Flux<ItemDto> itemDtoFlux = webClient.get()
-                .uri(LEGACY_CONTROLLER_V1 + ITEMS_ALL)
-                .accept(MediaType.APPLICATION_JSON)
-                .retrieve()
-                .bodyToFlux(ItemDto.class).log();
-        return ResponseEntity.ok(itemDtoFlux);
-    }
+    @GetMapping(value = ITEMS_ALL)
+    ResponseEntity<Flux<ItemDto>> getAllItems();
+
+    @GetMapping(value = FIND_ONE)
+    ResponseEntity<Mono<ItemDto>> findOne(@RequestParam(value = ID) String id);
+
+    @GetMapping(value = FIND_BY_DESC)
+    ResponseEntity<Flux<ItemDto>> findByDescription(@RequestParam(value = DESCRIPTION) String description);
+
+    @PostMapping(value = CREATE_ITEM)
+    @ResponseStatus(HttpStatus.CREATED)
+    ResponseEntity<Mono<ItemDto>> createItem(@RequestBody ItemDto itemRequest);
 }
