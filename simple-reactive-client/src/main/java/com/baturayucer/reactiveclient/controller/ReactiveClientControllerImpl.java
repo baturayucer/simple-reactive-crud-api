@@ -40,7 +40,8 @@ public class ReactiveClientControllerImpl implements ReactiveClientController{
         return ResponseEntity.ok(itemDtoMono);
     }
 
-    public ResponseEntity<Flux<ItemDto>> findByDescription(@RequestParam(value = DESCRIPTION) String description) {
+    public ResponseEntity<Flux<ItemDto>> findByDescription(
+            @RequestParam(value = DESCRIPTION) String description) {
         Flux<ItemDto> itemDtoFlux = webClient.get()
                 .uri(LEGACY_CONTROLLER_V1 + FIND_BY_DESC)
                 .accept(MediaType.APPLICATION_JSON)
@@ -54,8 +55,8 @@ public class ReactiveClientControllerImpl implements ReactiveClientController{
         Mono<ItemDto> itemDtoFlux = webClient.post()
                 .uri(LEGACY_CONTROLLER_V1 + CREATE_ITEM)
                 .accept(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromPublisher(Mono
-                        .just(itemRequest), ItemDto.class))
+                .body(BodyInserters.fromPublisher(
+                        Mono.just(itemRequest), ItemDto.class))
                 .retrieve()
                 .bodyToMono(ItemDto.class).log();
         return ResponseEntity.ok(itemDtoFlux);
