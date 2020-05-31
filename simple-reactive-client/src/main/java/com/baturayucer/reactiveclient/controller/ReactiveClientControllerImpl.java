@@ -21,6 +21,7 @@ import static com.baturayucer.reactiveclient.constant.ReactiveClientConstants.*;
 public class ReactiveClientControllerImpl implements ReactiveClientController{
 
     WebClient webClient = WebClient.builder()
+            .baseUrl(API_URL)
             .defaultHeader(HttpHeaders.ACCEPT,
                     MediaType.APPLICATION_JSON_VALUE)
             .defaultHeader(HttpHeaders.CONTENT_TYPE,
